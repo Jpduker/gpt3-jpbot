@@ -1,7 +1,10 @@
 function ask(){
     var chat = document.getElementById("chatinp").value;
-    document.getElementById('chatq').innerHTML=chat;
+    let query =chat;
+    let queryHtml = ' <p class= "chatq"<span>' + query +'</span><p>'
+    $("#chatq").append(queryHtml)
 
+    
     // POST
     fetch('/model', {
         headers: {
@@ -17,6 +20,10 @@ function ask(){
         return response.text();
     }).then(function (text) {
         text = JSON.parse(text);
-        document.getElementById('chatres').innerHTML = text.result;
+        let response = text.result;
+        let responseHtml = ' <p class= "responses"<span>' + response +'</span><p>';
+        $("#responses").append(responseHtml);
+        
     });
 }
+
